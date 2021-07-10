@@ -1,27 +1,42 @@
 <hello name="{{ name }}"></hello>
 <div>
-  <table>
-    <thead>
-      <tr>
-        <td>
-          Key
-        </td>
-        <td>
-          Delay (ms)
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let event of events"
-        [style.background-color]="event.delay == 0 ? '#fff' : event.delay &gt;= 100 ? '#fff' : '#f44336'"
-        [style.color]="event.delay == 0 ? '#000' : event.delay &gt;= 100 ? '#000' : '#fff'">
-        <td>
-          {{event.event.key}}
-        </td>
-        <td>
-          {{event.delay | number: '1.2-2'}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <p>
+    Count {{count}}
+  </p>
+  <p>
+    Average {{average}}
+  </p>
+  <p>
+    Standard Deviation {{standardDeviation}}
+  </p>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td>
+            Key
+          </td>
+          <td>
+            Delay (ms)
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let event of events"
+          [style.background-color]="event.delay == 0 ? '#fff' : 
+          event.delay &gt; average - (2 * standardDeviation) ? '#fff' : '#f44336'"
+          [style.color]="event.delay == 0 ? '#000' : 
+          event.delay &gt;= average - (2 * standardDeviation) ? '#000' : '#fff'"
+        >
+          <td>
+            {{event.event.key}}
+          </td>
+          <td>
+            {{event.delay | number: '1.2-2'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
