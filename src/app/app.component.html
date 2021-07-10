@@ -3,7 +3,15 @@
   <table>
     <tbody>
       <tr *ngFor="let event of events">
-        {{event.keyCode}}
+        <td>
+          {{event.keyCode}}
+        </td>
+        <td>
+          {{event.key}}
+        </td>
+        <td>
+          {{event.timeStamp}}
+        </td>
       </tr>
     </tbody>
   </table>
