@@ -1,16 +1,25 @@
 <hello name="{{ name }}"></hello>
 <div>
   <table>
+    <thead>
+      <tr>
+        <td>
+          Key
+        </td>
+        <td>
+          Delay (ms)
+        </td>
+      </tr>
+    </thead>
     <tbody>
-      <tr *ngFor="let event of events">
+      <tr *ngFor="let event of events"
+        [style.background-color]="event.delay == 0 ? '#fff' : event.delay &gt;= 100 ? '#fff' : '#f44336'"
+        [style.color]="event.delay == 0 ? '#000' : event.delay &gt;= 100 ? '#000' : '#fff'">
         <td>
-          {{event.keyCode}}
+          {{event.event.key}}
         </td>
         <td>
-          {{event.key}}
-        </td>
-        <td>
-          {{event.timeStamp}}
+          {{event.delay | number: '1.2-2'}}
         </td>
       </tr>
     </tbody>

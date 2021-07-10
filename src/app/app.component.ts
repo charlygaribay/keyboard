@@ -1,5 +1,5 @@
 import { Component, HostListener, VERSION } from '@angular/core';
-import { KeyboardEventExt } from '../models/keyboard-event-ext';
+import { KeyboardEventExt } from './keyboard-event-ext';
 
 @Component({
   selector: 'my-app',
@@ -7,21 +7,23 @@ import { KeyboardEventExt } from '../models/keyboard-event-ext';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
+  name = 'Keyboard';
   events: KeyboardEventExt[];
   timeStamp: number;
 
   constructor() {
     this.events = new Array(0);
-    this.timeStamp = Date.now();
+    this.timeStamp = 0;
   }
 
   @HostListener('document:keypress', ['$event'])
   onKeyPress(keyboardEvent: KeyboardEvent) {
-    console.log(keyboardEvent);
+    const delay =
+      this.timeStamp == 0 ? 0 : keyboardEvent.timeStamp - this.timeStamp;
+    this.timeStamp = keyboardEvent.timeStamp;
 
     const ext = new KeyboardEventExt();
-    ext.delay = 1;
+    ext.delay = delay;
     ext.event = keyboardEvent;
 
     this.events.push(ext);
