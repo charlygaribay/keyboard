@@ -41,5 +41,13 @@ export class AppComponent {
         return -1;
       }
     });
+
+    const count = this.events.filter(e => e.delay !== 0).length;
+    const sum = this.events
+      .filter(e => e.delay !== 0)
+      .reduce((p, c) => p + c.delay, 0);
+    const average = count > 0 ? sum / count : 0;
+
+    console.log(average);
   }
 }
