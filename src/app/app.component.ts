@@ -7,15 +7,12 @@ import { KeyboardEventExt } from './keyboard-event-ext';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  math = Math;
-
   name = 'Keyboard';
   events: KeyboardEventExt[];
   timeStamp: number;
 
   count: number;
-  average: number;
-  standardDeviation: number;
+  doubleCount: number;
 
   constructor() {
     this.events = new Array(0);
@@ -49,24 +46,8 @@ export class AppComponent {
     });
 
     this.count = this.events.filter(e => e.delay !== 0).length;
-    const sum = this.events
-      .filter(e => e.delay !== 0)
-      .reduce((s, e) => s + e.delay, 0);
-    this.average = this.count > 0 ? sum / this.count : 0;
-
-    this.events
-      .filter(e => e.delay !== 0)
-      .forEach(
-        e => (e.standardDeviation = Math.pow(e.delay - this.average, 2))
-      );
-
-    const sumsd = this.events
-      .filter(e => e.delay !== 0)
-      .reduce((s, e) => s + e.standardDeviation, 0);
-
-    this.standardDeviation = Math.sqrt(sumsd / this.count);
-
-    console.log(`average ${this.average}`);
-    console.log(`sd ${this.standardDeviation}`);
+    this.doubleCount = this.events.filter(
+      e => e.delay > 0 && e.delay <= 185
+    ).length;
   }
 }

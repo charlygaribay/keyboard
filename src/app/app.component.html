@@ -1,13 +1,10 @@
 <hello name="{{ name }}"></hello>
 <div>
   <p>
-    Count {{count}}
+    Keystroke Count {{count}}
   </p>
   <p>
-    Average {{average}}
-  </p>
-  <p>
-    Standard Deviation {{standardDeviation}}
+    Double Keystroke Count {{doubleCount}}
   </p>
   <div>
     <table>
@@ -22,13 +19,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let event of events"
-          [style.background-color]="event.delay == 0 ? '#fff' : 
-          event.delay &gt; average - (2 * standardDeviation) ? '#fff' : '#f44336'"
-          [style.color]="event.delay == 0 ? '#000' : 
-          event.delay &gt;= average - (2 * standardDeviation) ? '#000' : '#fff'"
-        >
+        <tr *ngFor="let event of events" [style.background-color]="event.delay == 0 ? '#fff' : 
+          event.delay &gt; 185 ? '#fff' : '#f44336'" [style.color]="event.delay == 0 ? '#000' : 
+          event.delay &gt;= 185 ? '#000' : '#fff'">
           <td>
             {{event.event.key}}
           </td>
