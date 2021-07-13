@@ -45,7 +45,7 @@ export class AppComponent {
       }
     });
 
-    this.count = this.events.filter(e => e.delay !== 0).length;
+    this.count = this.events.length;
     this.doubleCount = this.events.filter(
       e => e.delay > 0 && e.delay <= 185
     ).length;
